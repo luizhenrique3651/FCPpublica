@@ -15,9 +15,9 @@ public class ModuloConexao {
    java.sql.Connection conexao = null;
    //abaixo, chamada do driver
    String driver = "com.mysql.jdbc.Driver";
-   String url = "jdbc:mysql://localhost:3306/database?useSSL=true";
-   String user = "user";
-   String password = "password";
+   String url = "jdbc:mysql://localhost:3306/pendencia?useSSL=true";
+   String user = "usuario";
+   String password = "senha";
    //atrapalhar a conexao com banco agora
    //try catch para tentar realizar a conexao e se nao for possivel, retornar exceção
        try {

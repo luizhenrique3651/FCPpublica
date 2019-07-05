@@ -50,7 +50,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication()
                     {
-                        return new PasswordAuthentication("uizhenrique@gmail.com", "luiz1209coelho");
+                        return new PasswordAuthentication("email@gmail.com", "senhaEmail");
                     } 
                 });
  
@@ -59,16 +59,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             try {
  
                   Message message = new MimeMessage(session);
-                  message.setFrom(new InternetAddress("uizhenrique@gmail.com")); //Remetente
+                  message.setFrom(new InternetAddress("email@gmail.com")); //Remetente
  
                   String setor = (String) comboSetor.getSelectedItem();
                   Address[] toUser = null;
                 if(setor.equals("TI")){
                      toUser = InternetAddress //Destinatário(s)
-                             .parse("luiz.albuquerque@braservpetroleo.com.br"); 
+                             .parse("email@email.com"); 
                 } else{
                 toUser = InternetAddress //Destinatário(s)
-                             .parse("uizhenrique@live.com");
+                             .parse("email@live.com");
                 }
  
                   message.setRecipients(Message.RecipientType.TO, toUser);
