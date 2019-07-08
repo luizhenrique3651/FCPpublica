@@ -3,6 +3,8 @@ package br.com.infox.telas;
 
 import br.com.infox.DAO.PendenciaDAO;
 import br.com.infox.model.bean.Pendencia;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,11 +13,16 @@ import javax.swing.table.DefaultTableModel;
  * @author luiz
  */
 public class TelaAdministrador extends javax.swing.JFrame {
-
-    
+        static String causaRaizVariavel;
+        static String tipoVariavel;
+        static String SetorVariavel;
+        static String dataVariavel;
+        static String criticidadeVariavel;
+        static String StatusVariavel;
     public TelaAdministrador() {
         initComponents();
         readJTable();
+        linhaSelec();
     }
 
             public void readJTable() {
@@ -79,6 +86,33 @@ public class TelaAdministrador extends javax.swing.JFrame {
         }
             
             }
+            
+            
+           public void linhaSelec(){
+           
+            tablePendencia.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2 && tablePendencia.getSelectedRow() != -1) {
+                    
+                      causaRaizVariavel =  (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 0);
+                   tipoVariavel =     (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 1);
+                   SetorVariavel =  (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 2);
+                   dataVariavel =  (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 3);
+                   criticidadeVariavel = (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 4);
+                   StatusVariavel =  (String) tablePendencia.getValueAt(tablePendencia.getSelectedRow(), 5);
+                   
+                   
+                   
+                   
+                   AdministradorPendenciaDetalhada detalhe = new AdministradorPendenciaDetalhada();
+                   detalhe.setVisible(true);
+                   
+                }
+            }
+        });
+           
+           }
             
             
             
