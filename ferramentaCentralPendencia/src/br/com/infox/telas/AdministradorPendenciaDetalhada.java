@@ -5,7 +5,9 @@
  */
 package br.com.infox.telas;
 
+import br.com.infox.DAO.PendenciaDAO;
 import br.com.infox.dal.ModuloConexao;
+import br.com.infox.model.bean.Pendencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,15 +34,44 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     }
 
    public void setaValor(){
-   labelCausaRaiz.setText(TelaAdministrador.causaRaizVariavel);
+      
+       
+      
+   PendenciaDAO pdao = new PendenciaDAO();
+   String origemDetalhe;
+         int osDetalhe;
+         int scDetalhe;
+   for (Pendencia p : pdao.lerComDetalhes(TelaAdministrador.SetorVariavel, TelaAdministrador.causaRaizVariavel, TelaAdministrador.tipoVariavel)) {
+
+         
+               origemDetalhe= p.getOrigem();
+              osDetalhe =  p.getOrdemServico();
+               scDetalhe= p.getSolicitaCompra();
+             
+               String scString = Integer.toString(scDetalhe);
+               String osString = Integer.toString(osDetalhe);
+            
+    labelCausaRaiz.setText(TelaAdministrador.causaRaizVariavel);
    lblTipoMostra.setText(TelaAdministrador.tipoVariavel);
    lblNivelCriticidade.setText(TelaAdministrador.criticidadeVariavel);
    lblData.setText(TelaAdministrador.dataVariavel);
+   lblOrigemMostra.setText(origemDetalhe);
+   lblSolicitaCompMostra.setText(scString);
+   lblOrdemServMostra.setText(osString);
+            
+
+        }
    
    
    
    
    }
+   
+   
+   
+   
+   
+   
     public void enviar(){
                   java.sql.Date dataSql = new java.sql.Date(dataTermino.getDate().getTime()); 
                   java.sql.Date dataDaProvidencia1 = new java.sql.Date(dataProvid1.getDate().getTime());
@@ -129,9 +160,9 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         txtProvid3 = new javax.swing.JTextField();
         lblprovid3 = new javax.swing.JLabel();
         lblOsAdm = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblOrdemServMostra = new javax.swing.JLabel();
         lblAcAdm = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblSolicitaCompMostra = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         dataTermino = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
@@ -215,14 +246,14 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         lblOsAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblOsAdm.setText("O.S:");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("122345");
+        lblOrdemServMostra.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblOrdemServMostra.setText("122345");
 
         lblAcAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblAcAdm.setText("S.C:");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("235564");
+        lblSolicitaCompMostra.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblSolicitaCompMostra.setText("235564");
 
         jButton1.setText("Enviar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -275,9 +306,9 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblOsAdm)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblAcAdm)
-                                    .addComponent(jLabel2)))
+                                    .addComponent(lblSolicitaCompMostra)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,11 +395,11 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblOsAdm)
                             .addGap(6, 6, 6)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(6, 6, 6)
                             .addComponent(lblAcAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(4, 4, 4)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSolicitaCompMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(12, 12, 12)
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -453,8 +484,6 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dataProvid3;
     private com.toedter.calendar.JDateChooser dataTermino;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
@@ -465,9 +494,11 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDataAdm;
     private javax.swing.JLabel lblNivelCriticidade;
+    private javax.swing.JLabel lblOrdemServMostra;
     private javax.swing.JLabel lblOrigemAdm;
     private javax.swing.JLabel lblOrigemMostra;
     private javax.swing.JLabel lblOsAdm;
+    private javax.swing.JLabel lblSolicitaCompMostra;
     private javax.swing.JLabel lblTipoAdm;
     private javax.swing.JLabel lblTipoMostra;
     private javax.swing.JLabel lblprovid1;

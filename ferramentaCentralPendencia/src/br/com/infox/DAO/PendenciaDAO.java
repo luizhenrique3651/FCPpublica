@@ -111,5 +111,58 @@ public class PendenciaDAO {
     
     
 }
+    
+    
+    
+    
+    
+      public List<Pendencia> lerComDetalhes(String setor, String causa, String tipo) {
+       
+    
+        Connection conexao = ModuloConexao.conector();
+        
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        List<Pendencia> pendDesc = new ArrayList<>();
+
+        try {
+            pst = conexao.prepareStatement("SELECT * FROM pendencia WHERE setorOperacaoPendencia=? and causaRaiz=? and tipo=?");
+            pst.setString(1, setor);
+            pst.setString(2, causa);
+            pst.setString(3, tipo);
+            
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                Pendencia pendenciaDesc = new Pendencia();
+
+                
+                pendenciaDesc.setOrigem(rs.getString("origem"));
+                pendenciaDesc.setOrdemServico(rs.getInt("ordemServico"));
+                pendenciaDesc.setSolicitaCompra(rs.getInt("solicitaCompra"));
+                        
+               pendDesc.add(pendenciaDesc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PendenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+           // ModuloConexao.closeConnection(conexao, pst, rs);
+        }
+
+        return pendDesc;
+    
+    
+    
+}
+    
+    
+    
+    
+    
+    
+    
 
 }
