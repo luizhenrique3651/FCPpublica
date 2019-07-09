@@ -43,18 +43,29 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
    }
     public void enviar(){
                   java.sql.Date dataSql = new java.sql.Date(dataTermino.getDate().getTime()); 
+                  java.sql.Date dataDaProvidencia1 = new java.sql.Date(dataProvid1.getDate().getTime());
+                  java.sql.Date dataDaProvidencia2 = new java.sql.Date(dataProvid2.getDate().getTime());
+                  java.sql.Date dataDaProvidencia3 = new java.sql.Date(dataProvid3.getDate().getTime());
+                  
+                  String TodaProvid1 = dataDaProvidencia1+" "+txtProvid1.getText();
+                  String TodaProvid2= dataDaProvidencia2+" "+txtProvid2.getText();
+                  String TodaProvid3 = dataDaProvidencia3+" "+txtProvid3.getText();
 
-        String SqlEnvia = "insert into pendencia(dataPreviaTermino, "
-                + "acaoTomadaAdm) "
-                + "values(?, ?) where causaRaiz ="+"`"+labelCausaRaiz.getText()+"`, "+" and tipo ="+"`"+ lblTipoMostra.getText()+"`, "+" and dataPendencia ="+dataSql ;   
+        String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia2=?, providencia3=? WHERE causaRaiz=?";   
      
        try {
                 String statusPend = "PENDENTE";
             
-
+                    
             pst = conexao.prepareStatement(SqlEnvia);
-            pst.setDate(1, dataSql);
-           pst.setString(2, (String) txtAcaoTomada.getText());
+           pst.setString(1, (String) txtAcaoTomada.getText());
+           pst.setDate(2, dataSql); 
+           pst.setString(3, TodaProvid1);
+           pst.setString(4, TodaProvid2);
+           pst.setString(5, TodaProvid3);
+            pst.setString(6, labelCausaRaiz.getText());
+            
+           
            
            
           
@@ -165,7 +176,7 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         lblAcaoTomada.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblAcaoTomada.setText("Ação tomada:");
 
-        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Em andamento", "Concluída" }));
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PENDENTE", "EM ANDAMENTO", "CONCLUÍDO" }));
 
         lblstatusAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblstatusAdm.setText("Status:");
