@@ -81,8 +81,11 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                   String TodaProvid1 = dataDaProvidencia1+" "+txtProvid1.getText();
                   String TodaProvid2= dataDaProvidencia2+" "+txtProvid2.getText();
                   String TodaProvid3 = dataDaProvidencia3+" "+txtProvid3.getText();
+                  
+                  
+                      // String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia2=?, providencia3=? WHERE causaRaiz=?";   
 
-        String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia2=?, providencia3=? WHERE causaRaiz=?";   
+ 
      
        try {
                 String statusPend = "PENDENTE";
@@ -90,11 +93,57 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                     
             pst = conexao.prepareStatement(SqlEnvia);
            pst.setString(1, (String) txtAcaoTomada.getText());
-           pst.setDate(2, dataSql); 
+           pst.setDate(2, dataSql);
+           
+           
+          
+           
            pst.setString(3, TodaProvid1);
            pst.setString(4, TodaProvid2);
            pst.setString(5, TodaProvid3);
             pst.setString(6, labelCausaRaiz.getText());
+            
+            
+            
+            if(dataProvid1.equals(null)){
+                
+                
+                                       String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=? WHERE causaRaiz=?";   
+
+                  
+            pst = conexao.prepareStatement(SqlEnvia);
+           pst.setString(1, (String) txtAcaoTomada.getText());
+           pst.setDate(2, dataSql);
+           
+           
+          
+           
+          
+            pst.setString(3, labelCausaRaiz.getText());
+            
+            }else if(dataProvid2.equals(null)){
+                
+                
+                                       String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=? WHERE causaRaiz=?";   
+
+                  
+            pst = conexao.prepareStatement(SqlEnvia);
+           pst.setString(1, (String) txtAcaoTomada.getText());
+           pst.setDate(2, dataSql);
+           pst.setString(3, TodaProvid1);
+
+                
+            
+            }else if(dataProvid3.equals(null)){
+                    String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia WHERE causaRaiz=?";   
+
+                  
+            pst = conexao.prepareStatement(SqlEnvia);
+           pst.setString(1, (String) txtAcaoTomada.getText());
+           pst.setDate(2, dataSql);
+           pst.setString(3, TodaProvid1);
+            
+            }
             
            
            
