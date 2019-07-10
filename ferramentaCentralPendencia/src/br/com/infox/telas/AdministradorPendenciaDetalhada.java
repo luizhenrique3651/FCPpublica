@@ -73,17 +73,9 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
    
    
     public void enviar(){
-                  java.sql.Date dataSql = new java.sql.Date(dataTermino.getDate().getTime()); 
-                  java.sql.Date dataDaProvidencia1 = new java.sql.Date(dataProvid1.getDate().getTime());
-                  java.sql.Date dataDaProvidencia2 = new java.sql.Date(dataProvid2.getDate().getTime());
-                  java.sql.Date dataDaProvidencia3 = new java.sql.Date(dataProvid3.getDate().getTime());
-                  
-                  String TodaProvid1 = dataDaProvidencia1+" "+txtProvid1.getText();
-                  String TodaProvid2= dataDaProvidencia2+" "+txtProvid2.getText();
-                  String TodaProvid3 = dataDaProvidencia3+" "+txtProvid3.getText();
-                  
-                  
-                      // String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia2=?, providencia3=? WHERE causaRaiz=?";   
+                java.sql.Date dataSql = new java.sql.Date(dataTermino.getDate().getTime()); 
+                   
+                      String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia2=?, providencia3=? WHERE causaRaiz=?";   
 
  
      
@@ -91,59 +83,22 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                 String statusPend = "PENDENTE";
             
                     
-            pst = conexao.prepareStatement(SqlEnvia);
+           pst = conexao.prepareStatement(SqlEnvia);
            pst.setString(1, (String) txtAcaoTomada.getText());
            pst.setDate(2, dataSql);
            
            
           
            
-           pst.setString(3, TodaProvid1);
-           pst.setString(4, TodaProvid2);
-           pst.setString(5, TodaProvid3);
+           pst.setString(3, txtProvid1.getText());
+           pst.setString(4, txtProvid2.getText());
+           pst.setString(5, txtProvid3.getText());
             pst.setString(6, labelCausaRaiz.getText());
-            
-            
-            
-            if(dataProvid1.equals(null)){
                 
-                
-                                       String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=? WHERE causaRaiz=?";   
-
-                  
-            pst = conexao.prepareStatement(SqlEnvia);
-           pst.setString(1, (String) txtAcaoTomada.getText());
-           pst.setDate(2, dataSql);
+            
+            
+            
            
-           
-          
-           
-          
-            pst.setString(3, labelCausaRaiz.getText());
-            
-            }else if(dataProvid2.equals(null)){
-                
-                
-                                       String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=? WHERE causaRaiz=?";   
-
-                  
-            pst = conexao.prepareStatement(SqlEnvia);
-           pst.setString(1, (String) txtAcaoTomada.getText());
-           pst.setDate(2, dataSql);
-           pst.setString(3, TodaProvid1);
-
-                
-            
-            }else if(dataProvid3.equals(null)){
-                    String SqlEnvia = "UPDATE pendencia SET acaoTomadaAdm=?, dataPreviaTermino=?, providencia1=?, providencia WHERE causaRaiz=?";   
-
-                  
-            pst = conexao.prepareStatement(SqlEnvia);
-           pst.setString(1, (String) txtAcaoTomada.getText());
-           pst.setDate(2, dataSql);
-           pst.setString(3, TodaProvid1);
-            
-            }
             
            
            
@@ -197,17 +152,11 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         lblAcaoTomada = new javax.swing.JLabel();
         comboStatus = new javax.swing.JComboBox<>();
         lblstatusAdm = new javax.swing.JLabel();
-        lblprovid1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAcaoTomada = new javax.swing.JTextArea();
-        dataProvid1 = new com.toedter.calendar.JDateChooser();
         txtProvid1 = new javax.swing.JTextField();
-        dataProvid2 = new com.toedter.calendar.JDateChooser();
         txtProvid2 = new javax.swing.JTextField();
-        lblprovid2 = new javax.swing.JLabel();
-        dataProvid3 = new com.toedter.calendar.JDateChooser();
         txtProvid3 = new javax.swing.JTextField();
-        lblprovid3 = new javax.swing.JLabel();
         lblOsAdm = new javax.swing.JLabel();
         lblOrdemServMostra = new javax.swing.JLabel();
         lblAcAdm = new javax.swing.JLabel();
@@ -217,6 +166,9 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         labelCausaRaiz = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administração Pendência");
@@ -261,36 +213,30 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         lblstatusAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblstatusAdm.setText("Status:");
 
-        lblprovid1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblprovid1.setText("Providência 1:");
-
         txtAcaoTomada.setColumns(20);
         txtAcaoTomada.setRows(5);
         jScrollPane2.setViewportView(txtAcaoTomada);
 
+        txtProvid1.setText("Nenhuma providência");
         txtProvid1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProvid1ActionPerformed(evt);
             }
         });
 
+        txtProvid2.setText("Nenhuma providência");
         txtProvid2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProvid2ActionPerformed(evt);
             }
         });
 
-        lblprovid2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblprovid2.setText("Providência 2:");
-
+        txtProvid3.setText("Nenhuma providência");
         txtProvid3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProvid3ActionPerformed(evt);
             }
         });
-
-        lblprovid3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblprovid3.setText("Providência 3:");
 
         lblOsAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblOsAdm.setText("O.S:");
@@ -320,6 +266,15 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         labelCausaRaiz.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelCausaRaiz.setText("Causa");
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setText("Providência 1:");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setText("Providência 2:");
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setText("Providência 3:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -327,68 +282,63 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCausaRaiz)
-                    .addComponent(jLabel4)
-                    .addComponent(lblAcaoTomada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipoAdm)
+                    .addComponent(lblTipoMostra))
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblOrigemAdm)
+                    .addComponent(lblOrigemMostra))
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDataAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblData))
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCriticidadeAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNivelCriticidade))
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblstatusAdm)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(124, 124, 124)
+                .addComponent(btnArquivoDownload))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelCausaRaiz))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(lblAcaoTomada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblprovid1)
-                            .addComponent(dataProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblprovid2)
-                            .addComponent(dataProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblprovid3)
-                                    .addComponent(dataProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(txtProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblOsAdm)
-                                    .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAcAdm)
-                                    .addComponent(lblSolicitaCompMostra)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel5)
+                            .addComponent(txtProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1088, 1088, 1088)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTipoAdm)
-                            .addComponent(lblTipoMostra))
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblOrigemAdm)
-                            .addComponent(lblOrigemMostra))
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDataAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblData))
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCriticidadeAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNivelCriticidade))
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblstatusAdm)
-                            .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(124, 124, 124)
-                        .addComponent(btnArquivoDownload)))
-                .addContainerGap())
+                            .addComponent(lblOsAdm)
+                            .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAcAdm)
+                            .addComponent(lblSolicitaCompMostra)))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(1148, 1148, 1148)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,50 +371,45 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                             .addComponent(btnArquivoDownload))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(labelCausaRaiz)
                 .addGap(51, 51, 51)
                 .addComponent(lblAcaoTomada, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblprovid1)
-                        .addGap(9, 9, 9)
-                        .addComponent(dataProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(lblprovid2)
-                        .addGap(9, 9, 9)
-                        .addComponent(dataProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(lblprovid3)
-                        .addGap(9, 9, 9)
-                        .addComponent(dataProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblOsAdm)
-                            .addGap(6, 6, 6)
-                            .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(lblAcAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4)
-                            .addComponent(lblSolicitaCompMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43)
-                            .addComponent(txtProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43)
-                            .addComponent(txtProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtProvid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtProvid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel5)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblOsAdm)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblAcAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(lblSolicitaCompMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addGap(6, 6, 6)
+                        .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(1302, 590));
+        setSize(new java.awt.Dimension(1302, 604));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -528,13 +473,13 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArquivoDownload;
     private javax.swing.JComboBox<String> comboStatus;
-    private com.toedter.calendar.JDateChooser dataProvid1;
-    private com.toedter.calendar.JDateChooser dataProvid2;
-    private com.toedter.calendar.JDateChooser dataProvid3;
     private com.toedter.calendar.JDateChooser dataTermino;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelCausaRaiz;
     private javax.swing.JLabel lblAcAdm;
@@ -550,9 +495,6 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     private javax.swing.JLabel lblSolicitaCompMostra;
     private javax.swing.JLabel lblTipoAdm;
     private javax.swing.JLabel lblTipoMostra;
-    private javax.swing.JLabel lblprovid1;
-    private javax.swing.JLabel lblprovid2;
-    private javax.swing.JLabel lblprovid3;
     private javax.swing.JLabel lblstatusAdm;
     private javax.swing.JTextArea txtAcaoTomada;
     private javax.swing.JTextField txtProvid1;

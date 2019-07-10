@@ -179,7 +179,7 @@
     <Component class="javax.swing.JComboBox" name="comboSetor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
+          <StringArray count="11">
             <StringItem index="0" value="ALMOXARIFADO"/>
             <StringItem index="1" value="COMPRAS"/>
             <StringItem index="2" value="GER&#xca;NCIA"/>
@@ -190,6 +190,7 @@
             <StringItem index="7" value="OPERA&#xc7;&#xc3;O"/>
             <StringItem index="8" value="QSMS"/>
             <StringItem index="9" value="RNB"/>
+            <StringItem index="10" value="T.I"/>
           </StringArray>
         </Property>
       </Properties>
@@ -205,21 +206,21 @@
             <StringItem index="1" value="Auditoria"/>
             <StringItem index="2" value="Care"/>
             <StringItem index="3" value="Comissionamento"/>
-            <StringItem index="4" value="Hazard Hunter"/>
-            <StringItem index="5" value="Hazid"/>
-            <StringItem index="6" value="Inspe&#xe7;&#xe3;o"/>
-            <StringItem index="7" value="Investiga&#xe7;&#xe3;o"/>
-            <StringItem index="8" value="MOC"/>
-            <StringItem index="9" value="Outros"/>
-            <StringItem index="10" value="Overview"/>
-            <StringItem index="11" value="Pr&#xe9;-Audtoria"/>
-            <StringItem index="12" value="Registro de Simulado de Emerg&#xea;ncia"/>
-            <StringItem index="13" value="Simulados"/>
-            <StringItem index="14" value="SQ Event"/>
-            <StringItem index="15" value="VCP"/>
-            <StringItem index="16" value="Visita Gerencial"/>
-            <StringItem index="17" value="Crew Acceptance"/>
-            <StringItem index="18" value="HSE View"/>
+            <StringItem index="4" value="Crew Acceptance"/>
+            <StringItem index="5" value="Hazard Hunter"/>
+            <StringItem index="6" value="Hazid"/>
+            <StringItem index="7" value="HSE View"/>
+            <StringItem index="8" value="Inspe&#xe7;&#xe3;o"/>
+            <StringItem index="9" value="Investiga&#xe7;&#xe3;o"/>
+            <StringItem index="10" value="MOC"/>
+            <StringItem index="11" value="Outros"/>
+            <StringItem index="12" value="Overview"/>
+            <StringItem index="13" value="Pr&#xe9;-Audtoria"/>
+            <StringItem index="14" value="Registro de Simulado de Emerg&#xea;ncia"/>
+            <StringItem index="15" value="Simulados"/>
+            <StringItem index="16" value="SQ Event"/>
+            <StringItem index="17" value="VCP"/>
+            <StringItem index="18" value="Visita Gerencial"/>
             <StringItem index="19" value=" "/>
           </StringArray>
         </Property>
@@ -309,11 +310,13 @@
     <Component class="javax.swing.JComboBox" name="comboCriticidade">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="ALTA"/>
-            <StringItem index="1" value="MEDIA"/>
-            <StringItem index="2" value="BAIXA"/>
-            <StringItem index="3" value="N&#xc2;O SE APLICA"/>
+          <StringArray count="6">
+            <StringItem index="0" value="N&#xc2;O SE APLICA"/>
+            <StringItem index="1" value="BAIXA"/>
+            <StringItem index="2" value="MEDIA"/>
+            <StringItem index="3" value="ALTA"/>
+            <StringItem index="4" value=" "/>
+            <StringItem index="5" value=" "/>
           </StringArray>
         </Property>
       </Properties>

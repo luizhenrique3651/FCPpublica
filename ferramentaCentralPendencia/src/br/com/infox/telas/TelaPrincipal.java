@@ -114,13 +114,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
            pst.setString(6, (String) comboCriticidade.getSelectedItem());
            
            //pegar o Jtextfield da OS e SC e converter de string para int
+           int numeroSc;
+           int numeroOs;
+           
+           if(txtOs.getText().equals("")){
+           txtOs.setText("0000");
            String numOstxt = txtOs.getText();
-           int numeroOs = Integer.parseInt(numOstxt);
-           pst.setInt(7, numeroOs);
-           String numSctxt = txtSC.getText();
-           int numeroSc = Integer.parseInt(numSctxt);
+            numeroOs = Integer.parseInt(numOstxt);
+
+           
+           }
+           if(txtSC.getText().equals("")){
+           txtSC.setText("0000");
+                      String numSctxt = txtSC.getText();
+           numeroSc = Integer.parseInt(numSctxt);
+
+           }
+           
+           if(txtSC.getText().equals("") && txtOs.getText().equals("")){
+               
+                String numSctxt = txtSC.getText();
+           numeroSc = Integer.parseInt(numSctxt);
+
+           String numOstxt = txtOs.getText();
+            numeroOs = Integer.parseInt(txtOs.getText());
+                pst.setInt(7, numeroOs);
            pst.setInt(8,numeroSc);
          pst.setString(9, statusPend);
+         
+           }else{
+           
+                String numSctxt = txtSC.getText();
+           numeroSc = Integer.parseInt(numSctxt);
+
+           String numOstxt = txtOs.getText();
+            numeroOs = Integer.parseInt(txtOs.getText());
+                pst.setInt(7, numeroOs);
+           pst.setInt(8,numeroSc);
+         pst.setString(9, statusPend);
+           
+           
+           }
+      
 
 //executa a query do mysql
           pst.execute();
@@ -188,9 +223,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACIDENTE", "AUDITORIA CLIENTE", "INCIDENTE", "INSPEÇÃO", "REUNIÃO GERENCIAL", "SOLIC. DO CLIENTE", "TACO-19", "TACO-51" }));
 
-        comboSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALMOXARIFADO", "COMPRAS", "GERÊNCIA", "GESTÃO SGI", "GESTÃO SONDAS", "MANUT_ELÉTRICA", "MANUT_MECÂNICA", "OPERAÇÃO", "QSMS", "RNB" }));
+        comboSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALMOXARIFADO", "COMPRAS", "GERÊNCIA", "GESTÃO SGI", "GESTÃO SONDAS", "MANUT_ELÉTRICA", "MANUT_MECÂNICA", "OPERAÇÃO", "QSMS", "RNB", "T.I" }));
 
-        comboOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anomalia", "Auditoria", "Care", "Comissionamento", "Hazard Hunter", "Hazid", "Inspeção", "Investigação", "MOC", "Outros", "Overview", "Pré-Audtoria", "Registro de Simulado de Emergência", "Simulados", "SQ Event", "VCP", "Visita Gerencial", "Crew Acceptance", "HSE View", " " }));
+        comboOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anomalia", "Auditoria", "Care", "Comissionamento", "Crew Acceptance", "Hazard Hunter", "Hazid", "HSE View", "Inspeção", "Investigação", "MOC", "Outros", "Overview", "Pré-Audtoria", "Registro de Simulado de Emergência", "Simulados", "SQ Event", "VCP", "Visita Gerencial", " " }));
 
         jLabel1.setText("Data:");
 
@@ -227,7 +262,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblCriticidade.setText("Criticidade:");
 
-        comboCriticidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALTA", "MEDIA", "BAIXA", "NÂO SE APLICA" }));
+        comboCriticidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NÂO SE APLICA", "BAIXA", "MEDIA", "ALTA", " ", " " }));
 
         lblNumOs.setText("Número O.S:");
 
