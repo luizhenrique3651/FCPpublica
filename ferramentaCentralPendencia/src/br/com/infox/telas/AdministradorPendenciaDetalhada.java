@@ -58,6 +58,7 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
    lblOrigemMostra.setText(origemDetalhe);
    lblSolicitaCompMostra.setText(scString);
    lblOrdemServMostra.setText(osString);
+   lblSetorMostra.setText(TelaAdministrador.SetorVariavel);
             
 
         }
@@ -84,6 +85,7 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
             
                     
            pst = conexao.prepareStatement(SqlEnvia);
+          
            pst.setString(1, (String) txtAcaoTomada.getText());
            pst.setDate(2, dataSql);
            
@@ -120,6 +122,16 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                             
 
         } catch (Exception e) {
+            
+            
+            if(e.equals("java.lang.NullPointerException")){
+            JOptionPane.showMessageDialog(null, "INSIRA TODOS OS CAMPOS OBRIGATORIOS. " + e);
+            }
+            
+            
+            
+            
+            
              JOptionPane.showMessageDialog(null,"falha na inserção\n"
                      + " mensagem de erro: \n\n "+e);
                  this.dispose();
@@ -169,8 +181,10 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblSetorAdm = new javax.swing.JLabel();
+        lblSetorMostra = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administração Pendência");
         setResizable(false);
 
@@ -275,6 +289,12 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Providência 3:");
 
+        lblSetorAdm.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblSetorAdm.setText("Setor:");
+
+        lblSetorMostra.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblSetorMostra.setText("TI");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,16 +318,16 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                     .addComponent(lblNivelCriticidade))
                 .addGap(124, 124, 124)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblstatusAdm)
-                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124)
+                    .addComponent(lblSetorAdm)
+                    .addComponent(lblSetorMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnArquivoDownload))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel4))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(labelCausaRaiz))
+                .addComponent(labelCausaRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(lblAcaoTomada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,17 +345,21 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(txtProvid3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblOsAdm)
+                    .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAcAdm)
+                    .addComponent(lblSolicitaCompMostra))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblOsAdm)
-                            .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAcAdm)
-                            .addComponent(lblSolicitaCompMostra)))))
+                            .addComponent(lblstatusAdm)
+                            .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(1148, 1148, 1148)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -365,15 +389,15 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(lblNivelCriticidade))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblstatusAdm)
+                                .addComponent(lblSetorAdm)
                                 .addGap(6, 6, 6)
-                                .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblSetorMostra))
                             .addComponent(btnArquivoDownload))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(6, 6, 6)
-                .addComponent(labelCausaRaiz)
-                .addGap(51, 51, 51)
+                .addComponent(labelCausaRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(lblAcaoTomada, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,19 +421,24 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
                         .addComponent(lblOsAdm)
                         .addGap(6, 6, 6)
                         .addComponent(lblOrdemServMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addGap(11, 11, 11)
                         .addComponent(lblAcAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(lblSolicitaCompMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addComponent(lblSolicitaCompMostra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblstatusAdm)
+                        .addGap(3, 3, 3)
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6)
-                        .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(1302, 604));
+        setSize(new java.awt.Dimension(1302, 623));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -431,8 +460,14 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
+        enviar(); 
+        }catch(NullPointerException nulo){
+                    JOptionPane.showMessageDialog(null, "INSIRA TODOS OS CAMPOS OBRIGATORIOS. \n \n Atente-se se a data foi escolhida no formato correto, se os caracteres estiverem vemelhos a data não foi inserida corretamente \n \n" + nulo);
+
         
-        enviar();
+        }
+             
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -492,6 +527,8 @@ public class AdministradorPendenciaDetalhada extends javax.swing.JFrame {
     private javax.swing.JLabel lblOrigemAdm;
     private javax.swing.JLabel lblOrigemMostra;
     private javax.swing.JLabel lblOsAdm;
+    private javax.swing.JLabel lblSetorAdm;
+    private javax.swing.JLabel lblSetorMostra;
     private javax.swing.JLabel lblSolicitaCompMostra;
     private javax.swing.JLabel lblTipoAdm;
     private javax.swing.JLabel lblTipoMostra;
